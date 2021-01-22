@@ -1,6 +1,7 @@
 package br.com.pfemeiros.receiptstrategy.receipt;
 
-import br.com.pfemeiros.receiptstrategy.model.ReceiptInfo;
+import br.com.pfemeiros.receiptstrategy.model.Receipt;
+import br.com.pfemeiros.receiptstrategy.repository.ReceiptRepository;
 
 public class CollectReceipt implements ReceiptInterface {
 
@@ -10,8 +11,8 @@ public class CollectReceipt implements ReceiptInterface {
     }
 
     @Override
-    public ReceiptInfo getReceiptInfo() {
-        return null;
+    public Receipt getReceiptInfo(ReceiptRepository receiptRepository) {
+        return receiptRepository.findById(1L).orElse(null);
     }
 
 }
