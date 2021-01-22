@@ -1,2 +1,2 @@
 # receipt-strategy
-Java with Spring Boot usage of Strategy Designn Pattern through a receipt generator
+Java with Spring Boot usage of strategy design pattern through a receipt generator.
