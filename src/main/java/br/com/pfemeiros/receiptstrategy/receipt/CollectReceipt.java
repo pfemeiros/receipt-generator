@@ -9,25 +9,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static br.com.pfemeiros.receiptstrategy.util.PDFUtils.generateFile;
+import static br.com.pfemeiros.receiptstrategy.util.ThymeleafUtils.generateHtmlFromMap;
 
 public class CollectReceipt implements ReceiptInterface {
 
     private Map<String, Object> receiptInfoMap = new HashMap<>();
-    private String templateName = "collect.html";
+    private final String templateName = "collect.html";
 
     @Override
     public void createTemplate(Receipt receiptInfo, TemplateEngine templateEngine) {
         receiptInfoMap.put("id", receiptInfo.getId());
         receiptInfoMap.put("description", receiptInfo.getDescription());
         receiptInfoMap.put("total", receiptInfo.getTotal());
-        Context context = new Context();
-        for (Map.Entry<String, Object> entry : receiptInfoMap.entrySet()) {
-            context.setVariable(((Map.Entry) entry)
-                            .getKey()
-                            .toString(),
-                    entry.getValue());
-        }
-        String html = templateEngine.process(templateName, context);
+        String html = generateHtmlFromMap(templateEngine, receiptInfoMap, templateName);
         generateFile(html, receiptInfo.getId());
     }
 

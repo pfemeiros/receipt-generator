@@ -1,6 +1,8 @@
 package br.com.pfemeiros.receiptstrategy.controller;
 
 import br.com.pfemeiros.receiptstrategy.receipt.CollectReceipt;
+import br.com.pfemeiros.receiptstrategy.receipt.DistributionReceipt;
+import br.com.pfemeiros.receiptstrategy.receipt.TranshipmentReceipt;
 import br.com.pfemeiros.receiptstrategy.service.ReceiptService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +18,22 @@ public class ReceiptController {
         this.receiptService = receiptService;
     }
 
-    @GetMapping
-    public String get() {
+    @GetMapping("collections")
+    public String getCollections() {
         receiptService.getReceipt(new CollectReceipt());
-        return "Teste";
+        return "Collections";
+    }
+
+    @GetMapping("distributions")
+    public String getDistributions() {
+        receiptService.getReceipt(new DistributionReceipt());
+        return "Distributions";
+    }
+
+    @GetMapping("overflows")
+    public String getOverflows() {
+        receiptService.getReceipt(new TranshipmentReceipt());
+        return "Overflows";
     }
     
 }
