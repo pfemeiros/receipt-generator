@@ -19,6 +19,7 @@ public class TranshipmentReceipt implements ReceiptInterface {
     public void createTemplate(Receipt receiptInfo, TemplateEngine templateEngine) {
         receiptInfoMap.put("id", receiptInfo.getId());
         receiptInfoMap.put("description", receiptInfo.getDescription());
+        receiptInfoMap.put("date", receiptInfo.getDate());
         String html = generateHtmlFromMap(templateEngine, receiptInfoMap, templateName);
         generateFile(html, receiptInfo.getId());
     }
