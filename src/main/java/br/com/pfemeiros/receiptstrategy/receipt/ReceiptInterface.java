@@ -6,7 +6,7 @@ import org.thymeleaf.TemplateEngine;
 
 public interface ReceiptInterface {
 
-    void createTemplate(Receipt receiptInfo, TemplateEngine templateEngine);
+    byte[] createTemplate(Receipt receiptInfo, TemplateEngine templateEngine);
     Receipt getReceiptInfo(ReceiptRepository receiptRepository);
 
 }

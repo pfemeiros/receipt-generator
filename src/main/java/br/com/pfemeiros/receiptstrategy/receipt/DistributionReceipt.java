@@ -16,12 +16,12 @@ public class DistributionReceipt implements ReceiptInterface {
     private final String templateName = "distribution.html";
 
     @Override
-    public void createTemplate(Receipt receiptInfo, TemplateEngine templateEngine) {
+    public byte[] createTemplate(Receipt receiptInfo, TemplateEngine templateEngine) {
         receiptInfoMap.put("id", receiptInfo.getId());
         receiptInfoMap.put("description", receiptInfo.getDescription());
         receiptInfoMap.put("quantity", receiptInfo.getQuantity());
         String html = generateHtmlFromMap(templateEngine, receiptInfoMap, templateName);
-        generateFile(html, receiptInfo.getId());
+        return generateFile(html);
     }
 
     @Override

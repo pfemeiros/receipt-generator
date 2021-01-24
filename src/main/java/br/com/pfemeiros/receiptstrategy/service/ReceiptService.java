@@ -4,6 +4,6 @@ import br.com.pfemeiros.receiptstrategy.receipt.ReceiptInterface;
 
 public interface ReceiptService {
 
-    void getReceipt(ReceiptInterface receiptInterface);
+    byte[] getReceipt(ReceiptInterface receiptInterface);
 
 }

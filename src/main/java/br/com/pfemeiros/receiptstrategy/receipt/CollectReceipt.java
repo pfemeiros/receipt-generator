@@ -3,7 +3,6 @@ package br.com.pfemeiros.receiptstrategy.receipt;
 import br.com.pfemeiros.receiptstrategy.model.Receipt;
 import br.com.pfemeiros.receiptstrategy.repository.ReceiptRepository;
 import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,12 +16,12 @@ public class CollectReceipt implements ReceiptInterface {
     private final String templateName = "collect.html";
 
     @Override
-    public void createTemplate(Receipt receiptInfo, TemplateEngine templateEngine) {
+    public byte[] createTemplate(Receipt receiptInfo, TemplateEngine templateEngine) {
         receiptInfoMap.put("id", receiptInfo.getId());
         receiptInfoMap.put("description", receiptInfo.getDescription());
         receiptInfoMap.put("total", receiptInfo.getTotal());
         String html = generateHtmlFromMap(templateEngine, receiptInfoMap, templateName);
-        generateFile(html, receiptInfo.getId());
+        return generateFile(html);
     }
 
     @Override

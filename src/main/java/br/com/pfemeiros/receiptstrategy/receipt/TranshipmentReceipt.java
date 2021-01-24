@@ -16,12 +16,12 @@ public class TranshipmentReceipt implements ReceiptInterface {
     private final String templateName = "transhipment.html";
 
     @Override
-    public void createTemplate(Receipt receiptInfo, TemplateEngine templateEngine) {
+    public byte[] createTemplate(Receipt receiptInfo, TemplateEngine templateEngine) {
         receiptInfoMap.put("id", receiptInfo.getId());
         receiptInfoMap.put("description", receiptInfo.getDescription());
         receiptInfoMap.put("date", receiptInfo.getDate());
         String html = generateHtmlFromMap(templateEngine, receiptInfoMap, templateName);
-        generateFile(html, receiptInfo.getId());
+        return generateFile(html);
     }
 
     @Override

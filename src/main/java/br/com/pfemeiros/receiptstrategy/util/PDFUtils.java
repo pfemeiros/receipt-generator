@@ -1,28 +1,26 @@
 package br.com.pfemeiros.receiptstrategy.util;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.html.simpleparser.HTMLWorker;
-import com.itextpdf.text.pdf.PdfWriter;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.StringReader;
 
 public class PDFUtils {
 
-    public static void generateFile(String html, Long id) {
-        FileOutputStream fileOutputStream = null;
+    public static byte[] generateFile(String html) {
         try {
-            fileOutputStream = new FileOutputStream("C:\\Users\\pfeme\\Documents\\Workspace\\receipt-strategy\\src\\main\\resources" + id + ".pdf"); // TODO return file for download
-            Document document = new Document();
-            PdfWriter.getInstance(document, fileOutputStream);
-            document.open();
-            HTMLWorker htmlWorker = new HTMLWorker(document); // TODO check deprecated
-            htmlWorker.parse(new StringReader(html));
-            document.close();
-        } catch (IOException | DocumentException e) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ITextRenderer renderer = new ITextRenderer();
+            renderer.setDocumentFromString(html);
+            renderer.layout();
+            renderer.createPDF(baos);
+            baos.close();
+            return baos.toByteArray();
+        } catch (IOException | com.lowagie.text.DocumentException e) {
             e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Could not read file");
         }
     }
 

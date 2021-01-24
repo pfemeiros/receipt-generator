@@ -18,9 +18,9 @@ public class ReceiptServiceImpl implements ReceiptService {
     }
 
     @Override
-    public void getReceipt(ReceiptInterface receiptInterface) {
+    public byte[] getReceipt(ReceiptInterface receiptInterface) {
         Receipt receiptInfo = receiptInterface.getReceiptInfo(receiptRepository);
-        receiptInterface.createTemplate(receiptInfo, templateEngine);
+        return receiptInterface.createTemplate(receiptInfo, templateEngine);
     }
 
 }
