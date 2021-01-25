@@ -1,2 +1,3 @@
-# receipt-strategy
-Java with Spring Boot usage of strategy design pattern through a receipt generator.
+# Receipt Generator
+
+Receipt Generator is a API to create pdf files from html templates. 
