@@ -1,3 +1,3 @@
 # Receipt Generator
 
-Receipt Generator is a API to create pdf files from html templates. 
+Receipt Generator is an API to create pdf files from html templates with Spring Boot and Java.
