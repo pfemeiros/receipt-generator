@@ -22,7 +22,6 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .apis(RequestHandlerSelectors.basePackage("br.com.pfemeiros.receiptstrategy"))
                 .build()
                 .apiInfo(metaData());
-
     }
 
     private ApiInfo metaData() {
